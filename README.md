@@ -2,7 +2,7 @@
 # Diccionario de Variables
 
 # Diccionario de Variables de Falabella
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **ID del articulo del pedido** | String/Numérico (ID) | Identificador único del artículo dentro del pedido. | **Números enteros grandes** (ej. `124705506`). | Conversión a tipo **`int64`** (entero) o mantenimiento como `string` para evitar errores de precisión. |
 | **SKU del vendedor** | String/Numérico (ID) | Stock Keeping Unit (SKU) del producto específico del vendedor. | **Números enteros muy grandes** (ej. `4457798326383`). | Conversión a **`string`** para preservar la integridad del ID. |
@@ -72,7 +72,7 @@
 
 # Diccionario de Variables de Ventas de Mercado Libre
 
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **# de venta** | String/Numérico (ID) | Número de identificación único de la venta/pedido. | **Numérico entero grande** (ej. `2000009404442073`). | Conversión a **`string`** para preservar la integridad del ID. |
 | **Fecha de venta** | Fecha/Timestamp | Fecha y hora de la venta. | **String de Fecha/Hora** en formato español (ej. `"30 de septiembre de 2025 19:29 hs."`). | Conversión a **`datetime`** con manejo de la localización y el texto `hs.`. |
@@ -136,7 +136,7 @@
 
 # Diccionario de Variables de Ventas de París
 
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **Nro_orden** | String/Numérico (ID) | Número de identificación único del pedido/orden. | **Numérico entero** (ej. `3042231950`). | Conversión a **`string`** para evitar pérdida de precisión y tratamiento como identificador. |
 | **Nro_Devolucion** | String/Numérico (ID) | Número de identificación de la devolución, si aplica. | **String** (ej. `N/A`) o **vacío**. | **Imputar 0** o **`null`** y **limpiar el string `N/A`**. Mantenimiento como `string`. |
@@ -172,7 +172,7 @@
 
 # Diccionario de Variables de Ventas de Walmart
 
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **Número de orden de compra** | String/Numérico (ID) | Número de identificación del pedido a nivel de orden de compra. | **Alfanumérico** (ej. `P110476348`). | **Mantenimiento como string** para preservar formato. |
 | **Número De Orden** | String/Numérico (ID) | Número de identificación del pedido a nivel de línea o ítem. | **Numérico entero grande** (ej. `8182571000070`). | Conversión a **`string`** para tratar como ID y evitar pérdida de precisión. |
@@ -214,7 +214,7 @@
 
 # Diccionario de Variables de Ventas de Hites
 
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **id** | String/Numérico (ID) | Identificador único de la línea de pedido. | Números enteros (ej. `117699`). | Mantenimiento como **`int`** o **`string`**. |
 | **orderNumber** | String/Numérico (ID) | Número de la orden de pedido principal. | Números enteros (ej. `2388820101`). | Conversión a **`string`** para tratar como ID. |
@@ -266,7 +266,7 @@
 
 # Diccionario de Variables de Ventas de Shopify
 
-| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
 | :--- | :--- | :--- | :--- | :--- |
 | **Name** | String/Numérico (ID) | Número de identificación de la orden. | String (ej. `#8041`). | Conversión a **`string`** y **extracción del número** (quitar `#`). |
 | **Email** | String/Geográfico | Correo electrónico de contacto del cliente. | String (ej. `meli.munoze@gmail.com`). | **Estandarización a minúsculas** y validación de formato. |

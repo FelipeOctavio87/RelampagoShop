@@ -268,3 +268,87 @@ Variables Para Analizar el Resultado:
 | **rutSeller** | String/Numérico (ID) | RUT (Rol Único Tributario) del vendedor. | Numérico entero (ej. `76288540`). | Conversión a **`string`** para preservar formato. |
 | **logisticsIntegratorId** | String/Numérico (ID) | ID del integrador logístico. | Números enteros (ej. `1`). | Mantenimiento como **`string`** o **`int`**. |
 | **logisticsIntegratorName** | Categórico/String | Nombre del integrador logístico. | String (ej. `Enviame`). | Limpieza de texto y **normalización**. |
+
+# Diccionario de Variables de Ventas de Shopify
+
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **Name** | String/Numérico (ID) | Número de identificación de la orden. | String (ej. `#8041`). | Conversión a **`string`** y **extracción del número** (quitar `#`). |
+| **Email** | String/Geográfico | Correo electrónico de contacto del cliente. | String (ej. `meli.munoze@gmail.com`). | **Estandarización a minúsculas** y validación de formato. |
+| **Financial Status** | Categórico | Estado financiero de la orden (ej. `paid`, `pending`, `refunded`). | String (ej. `paid`). | **Mantenimiento como categórico.** |
+| **Paid at** | Fecha/Timestamp | Marca de tiempo de cuándo se pagó la orden. | String de Fecha/Hora con zona horaria (ej. `2025-07-19 15:44:41 -0400`). | Conversión a tipo **`datetime`** y **normalización a UTC**. |
+| **Fulfillment Status** | Categórico | Estado de cumplimiento de la orden (ej. `fulfilled`, `unfulfilled`). | String (ej. `fulfilled`). | **Mantenimiento como categórico.** |
+| **Fulfilled at** | Fecha/Timestamp | Marca de tiempo de cuándo se completó el cumplimiento. | String de Fecha/Hora con zona horaria (ej. `2025-07-21 12:14:28 -0400`). | Conversión a tipo **`datetime`** y **normalización a UTC**. |
+| **Accepts Marketing** | Categórico | Indica si el cliente acepta recibir correos de marketing. | String (ej. `yes`, `no`). | Mapear a **Booleano** (`True`/`False`). |
+| **Currency** | Categórico | Código de la moneda de la transacción. | String (ej. `CLP`). | **Mantenimiento como categórico.** |
+| **Subtotal** | Numérico (Moneda) | Subtotal de los productos (antes de envío, impuestos o descuentos). | Numérico con decimal (ej. `92000.0`). | Conversión a tipo **`float`** para cálculos. |
+| **Shipping** | Numérico (Moneda) | Costo de envío cobrado. | Numérico con decimal (ej. `27822.0`). | Conversión a tipo **`float`** para cálculos. |
+| **Taxes** | Numérico (Moneda) | Monto total de impuestos. | Numérico con decimal (ej. `19131.0`). | Conversión a tipo **`float`** para cálculos. |
+| **Total** | Numérico (Moneda) | Valor total final de la orden. | Numérico con decimal (ej. `119822.0`). | Conversión a tipo **`float`** para cálculos. |
+| **Discount Code** | String/Mixto | Código de descuento utilizado. | String (ej. `OFERTA5000`) o **vacío**. | **Detección de nulos** o imputar `No Discount`. |
+| **Discount Amount** | Numérico (Moneda) | Monto del descuento aplicado. | Numérico con decimal (ej. `5000.0`). | Conversión a tipo **`float`** para cálculos. |
+| **Shipping Method** | Categórico | Nombre del método de envío utilizado. | String (ej. `FedEx a Domicilio`). | **Mantenimiento como categórico.** |
+| **Created at** | Fecha/Timestamp | Marca de tiempo de cuándo se creó la orden. | String de Fecha/Hora con zona horaria. | Conversión a tipo **`datetime`** y **normalización a UTC**. |
+| **Lineitem quantity** | Numérico (Contador) | Cantidad de unidades de esta línea de producto. | Numérico entero (ej. `1`). | Conversión a tipo **`int`**. |
+| **Lineitem name** | String/Geográfico | Nombre del producto en la línea de pedido. | String (ej. `Red c/ Soportes Repuesto Mesa Ping Pong`). | **Limpieza de texto** y normalización. |
+| **Lineitem price** | Numérico (Moneda) | Precio unitario del producto en esta línea. | Numérico con decimal (ej. `12990.0`). | Conversión a tipo **`float`**. |
+| **Lineitem compare at price** | Numérico (Moneda) | Precio de comparación (precio de venta original) del producto. | Numérico con decimal o **vacío**. | Conversión a tipo **`float`**. Imputar el `Lineitem price` o `0` a nulos. |
+| **Lineitem sku** | String/Mixto | SKU del producto en la línea de pedido. | Alfanumérico (ej. `8000010050020`). | **Mantenimiento como string.** |
+| **Lineitem requires shipping** | Categórico | Indica si el artículo requiere envío. | String (ej. `true`, `false`). | Mapear a **Booleano**. |
+| **Lineitem taxable** | Categórico | Indica si el artículo está sujeto a impuestos. | String (ej. `true`, `false`). | Mapear a **Booleano**. |
+| **Lineitem fulfillment status** | Categórico | Estado de cumplimiento de esta línea de producto. | String (ej. `fulfilled`). | **Mantenimiento como categórico.** |
+| **Billing Name** | String/Geográfico | Nombre completo para la facturación. | String (ej. `Melina Muñoz Estevez`). | Limpieza y **normalización**. |
+| **Billing Street** | String/Geográfico | Calle de facturación. | String (ej. `Bilbao 1000`). | **Normalización** de nombres de calles. |
+| **Billing Address1** | String/Geográfico | Dirección de facturación, línea 1. | String (ej. `8750 DPTO.1203 A`). | **Normalización** de direcciones. |
+| **Billing Address2** | String/Geográfico | Dirección de facturación, línea 2 (información adicional). | **Vacío** o String. | **Detección y tratamiento de nulos.** |
+| **Billing Company** | String/Geográfico | Nombre de la empresa de facturación (si aplica). | String o **vacío**. | **Detección y tratamiento de nulos.** |
+| **Billing City** | String/Geográfico | Ciudad de facturación. | String (ej. `SANTIAGO`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Billing Zip** | String/Geográfico | Código postal de facturación. | String (ej. `8750 DPTO.1203 A`). | **Mantenimiento como string.** |
+| **Billing Province** | String/Geográfico | Provincia/Estado de facturación (código corto). | String (ej. `RM`). | **Mantenimiento como categórico.** |
+| **Billing Country** | String/Geográfico | País de facturación (código corto). | String (ej. `CL`). | **Mantenimiento como categórico.** |
+| **Billing Phone** | String/Geográfico | Teléfono de facturación. | String con prefijo (ej. `+56996302759`). | **Estandarizar a formato numérico** (eliminar espacios y `+`). |
+| **Shipping Name** | String/Geográfico | Nombre completo para el envío. | String (ej. `Melina Muñoz Estevez`). | Limpieza y **normalización**. |
+| **Shipping Street** | String/Geográfico | Calle de envío. | String (ej. `CLAUDIO ARRAU`). | **Normalización** de nombres de calles. |
+| **Shipping Address1** | String/Geográfico | Dirección de envío, línea 1. | String (ej. `8750 DPTO.1203 A`). | **Normalización** de direcciones. |
+| **Shipping Address2** | String/Geográfico | Dirección de envío, línea 2. | **Vacío** o String. | **Detección y tratamiento de nulos.** |
+| **Shipping Company** | String/Geográfico | Nombre de la empresa de envío (si aplica). | String o **vacío**. | **Detección y tratamiento de nulos.** |
+| **Shipping City** | String/Geográfico | Ciudad de envío. | String (ej. `SANTIAGO`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Shipping Zip** | String/Geográfico | Código postal de envío. | String (ej. `996302759`). | **Mantenimiento como string.** |
+| **Shipping Province** | String/Geográfico | Provincia/Estado de envío (código corto). | String (ej. `RM`). | **Mantenimiento como categórico.** |
+| **Shipping Country** | String/Geográfico | País de envío (código corto). | String (ej. `CL`). | **Mantenimiento como categórico.** |
+| **Shipping Phone** | String/Geográfico | Teléfono de envío. | String con prefijo (ej. `+56996302759`). | **Estandarizar a formato numérico** (eliminar espacios y `+`). |
+| **Notes** | String/Texto Libre | Notas añadidas al pedido por el cliente. | String o **vacío**. | **Limpieza de texto** y tratamiento de nulos. |
+| **Note Attributes** | String/Texto Libre | Atributos adicionales del pedido. | String o **vacío**. | **Limpieza de texto** y tratamiento de nulos. |
+| **Cancelled at** | Fecha/Timestamp | Marca de tiempo de cuándo se canceló la orden. | String de Fecha/Hora con zona horaria o **vacío**. | Conversión a tipo **`datetime`**. |
+| **Payment Method** | Categórico | Método de pago utilizado. | String (ej. `Mercado Pago Checkout Pro`). | **Mantenimiento como categórico.** |
+| **Payment Reference** | String/Mixto | Referencia interna del pago. | Alfanumérico (ej. `raXoFNtl7Oauzc1nlOYXChNPw`). | **Mantenimiento como string.** |
+| **Refunded Amount** | Numérico (Moneda) | Monto total reembolsado. | Numérico con decimal (ej. `0`). | Conversión a tipo **`float`**. |
+| **Vendor** | Categórico | Vendedor/Proveedor del producto (si aplica). | String (ej. `AGM`). | **Mantenimiento como categórico.** |
+| **Outstanding Balance** | Numérico (Moneda) | Saldo pendiente (si aplica). | Numérico con decimal (ej. `0`). | Conversión a tipo **`float`**. |
+| **Employee** | String/Geográfico | Empleado asociado a la venta. | **Vacío** o Nombre. | **Detección y tratamiento de nulos.** |
+| **Location** | String/Geográfico | Ubicación asociada a la venta. | **Vacío** o Nombre. | **Detección y tratamiento de nulos.** |
+| **Device ID** | String/Numérico (ID) | ID del dispositivo (si aplica). | **Vacío** o Alfanumérico. | **Mantenimiento como string.** |
+| **Id** | String/Numérico (ID) | ID único de la orden (ID interno de Shopify). | Números enteros (ej. `6163980091528`). | **Mantenimiento como string.** |
+| **Tags** | Categórico | Etiquetas asignadas al pedido. | String con etiquetas separadas por coma (ej. `etiqueta1,etiqueta2`). | **Separar tags en columnas/filas** para análisis categórico. |
+| **Risk Level** | Categórico | Nivel de riesgo de la orden. | String (ej. `Low`). | **Mantenimiento como categórico.** |
+| **Source** | Categórico | Fuente o canal de origen del pedido. | String (ej. `web`). | **Mantenimiento como categórico.** |
+| **Lineitem discount** | Numérico (Moneda) | Descuento aplicado a la línea de producto. | Numérico con decimal (ej. `0`). | Conversión a tipo **`float`**. |
+| **Tax 1 Name** | Categórico | Nombre del impuesto 1 (ej. `VAT 19 %`). | String o **vacío**. | **Mantenimiento como categórico.** |
+| **Tax 1 Value** | Numérico (Moneda) | Valor del impuesto 1. | Numérico con decimal (ej. `3829`). | Conversión a tipo **`float`**. |
+| **Tax 2 Name** | Categórico | Nombre del impuesto 2. | **Vacío**. | **Mantenimiento como categórico.** |
+| **Tax 2 Value** | Numérico (Moneda) | Valor del impuesto 2. | **Vacío**. | Conversión a tipo **`float`**. |
+| **Tax 3 Name** | Categórico | Nombre del impuesto 3. | **Vacío**. | **Mantenimiento como categórico.** |
+| **Tax 3 Value** | Numérico (Moneda) | Valor del impuesto 3. | **Vacío**. | Conversión a tipo **`float`**. |
+| **Tax 4 Name** | Categórico | Nombre del impuesto 4. | **Vacío**. | **Mantenimiento como categórico.** |
+| **Tax 4 Value** | Numérico (Moneda) | Valor del impuesto 4. | **Vacío**. | Conversión a tipo **`float`**. |
+| **Tax 5 Name** | Categórico | Nombre del impuesto 5. | **Vacío**. | **Mantenimiento como categórico.** |
+| **Tax 5 Value** | Numérico (Moneda) | Valor del impuesto 5. | **Vacío**. | Conversión a tipo **`float`**. |
+| **Phone** | String/Geográfico | Teléfono del cliente (alternativo/general). | String con prefijo (ej. `+56996302759`). | **Estandarizar a formato numérico.** |
+| **Receipt Number** | String/Numérico (ID) | Número de recibo. | Alfanumérico. | **Mantenimiento como string.** |
+| **Duties** | String/Mixto | Información sobre aranceles o derechos. | **Vacío**. | **Detección y tratamiento de nulos.** |
+| **Billing Province Name** | String/Geográfico | Nombre de la Provincia/Estado de facturación. | String (ej. `Santiago`). | **Normalización de mayúsculas/minúsculas.** |
+| **Shipping Province Name** | String/Geográfico | Nombre de la Provincia/Estado de envío. | String (ej. `Santiago`). | **Normalización de mayúsculas/minúsculas.** |
+| **Payment ID** | String/Numérico (ID) | ID único del pago. | Alfanumérico. | **Mantenimiento como string.** |
+| **Payment Terms Name** | Categórico | Nombre de los términos de pago. | String o **vacío**. | **Mantenimiento como categórico.** |
+| **Next Payment Due At** | Fecha/Timestamp | Fecha de próximo pago pendiente. | String de Fecha/Hora con zona horaria o **vacío**. | Conversión a tipo **`datetime`**. |
+| **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |

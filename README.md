@@ -6,69 +6,72 @@ Variables Para Analizar el Resultado:
 | V1 | V2 | V3 | V4 | V5 | V6 | V7 | V8 | V9 | V10 | V11 | V12 | V13 | V14 | V15 | V16 | V17 | V18 | V19 | V20 | V21 | V22 | V23 | V24 | V25 | V26 | V27 | V28 |
 | V1 | V2 | V3 | V4 | V5 | V6 | V7 | V8 | V9 | V10 | V11 | V12 | V13 | V14 | V15 | V16 | V17 | V18 | V19 | V20 | V21 | V22 | V23 | V24 | V25 | V26 | V27 | V28 |
 
-Variables Falabella:
-1.  `ID del articulo del pedido`
-2.  `SKU del vendedor`
-3.  `SKU de Falabella`
-4.  `Creado el`
-5.  `Numero de pedido`
-6.  `ID de pedido`
-7.  `Origen del pedido`
-8.  `Moneda del pedido`
-9.  `Documento requerido`
-10. `Nombre del cliente`
-11. `Correo electronico del cliente`
-12. `Numero de registro nacional`
-13. `Nombre de envio`
-14. `Direccion de envio`
-15. `Direccion de envio 2`
-16. `Direccion de envio 3`
-17. `Telefono de envio`
-18. `Telefono de envio 2`
-19. `Ciudad de envio`
-20. `Codigo postal de envio`
-21. `Pais de envio`
-22. `Barrio de envio`
-23. `Region de envio`
-24. `Nombre de facturacion`
-25. `Direccion de facturacion`
-26. `Direccion de facturacion 2`
-27. `Direccion de facturacion 3`
-28. `Telefono de facturacion`
-29. `Telefono de facturacion 2`
-30. `Ciudad de facturacion`
-31. `Codigo postal de facturacion`
-32. `Pais de facturacion`
-33. `Barrio de facturacion`
-34. `Region de facturacion`
-35. `Metodo de pago`
-36. `Precio pagado`
-37. `Precio unitario`
-38. `Costo de envio`
-39. `Creditos de monedero`
-40. `Monto de impuestos`
-41. `Nombre del articulo`
-42. `Variacion`
-43. `Proveedor de envio`
-44. `Tipo de envio`
-45. `Tipo de proveedor de envio`
-46. `Codigo de seguimiento`
-47. `URL de seguimiento`
-48. `Proveedor de envio (primer tramo)`
-49. `Codigo de seguimiento (primer tramo)`
-50. `URL de seguimiento (primer tramo)`
-51. `Tiempo de envio prometido`
-52. `Estado`
-53. `Canal de cumplimiento`
-54. `Motivo de cancelacion`
-55. `Nombre Legal`
-56. `Direccion`
-57. `Region`
-58. `Ciudad`
-59. `Municipalidad`
-60. `Documento de Identificacion`
-61. `Numero de Documento`
-62. `Actividad Economica`
-63. `Verificador del Documento`
-64. `Correo Electronico`
-65. `Telefono`
+# Diccionario de Variables del Archivo de Pedidos
+
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **ID del articulo del pedido** | String/Numérico (ID) | Identificador único del artículo dentro del pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **SKU del vendedor** | String/Numérico (ID) | Stock Keeping Unit (SKU) del producto específico del vendedor. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **SKU de Falabella** | String/Numérico (ID) | Stock Keeping Unit (SKU) del producto en el catálogo de Falabella. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Creado el** | Fecha/Timestamp | Fecha y/u hora de creación del pedido. (**Requiere conversión a `datetime`**). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Numero de pedido** | String/Numérico (ID) | Número de pedido principal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **ID de pedido** | String/Numérico (ID) | Identificador único del pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Origen del pedido** | Categórico | Canal de donde proviene el pedido (ej. marketplace, web, app). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Moneda del pedido** | Categórico | Tipo de moneda utilizada en el pedido (ej. CLP, USD). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Documento requerido** | Categórico | Tipo de documento fiscal requerido (ej. BOLETA, FACTURA). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Nombre del cliente** | String/Geográfico | Nombre completo del cliente. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Correo electronico del cliente** | String/Geográfico | Email del cliente. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Numero de registro nacional** | String/Numérico (ID) | Número de registro o identificación fiscal/nacional del cliente. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Nombre de envio** | String/Geográfico | Nombre de la persona que recibirá el pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de envio** | String/Geográfico | Línea principal de la dirección de envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de envio 2** | String/Geográfico | Segunda línea de la dirección de envío (opcional). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de envio 3** | String/Geográfico | Tercera línea de la dirección de envío (opcional). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Telefono de envio** | String (Identificación) | Número de teléfono principal de contacto para el envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Telefono de envio 2** | String (Identificación) | Número de teléfono secundario de contacto para el envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Ciudad de envio** | String/Geográfico | Ciudad a donde se enviará el pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Codigo postal de envio** | String/Numérico (ID) | Código postal de la dirección de envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Pais de envio** | String/Geográfico | País de destino del envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Barrio de envio** | String/Geográfico | Barrio o comuna de destino del envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Region de envio** | String/Geográfico | Región o estado de destino del envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Nombre de facturacion** | String/Geográfico | Nombre de la persona o entidad para la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de facturacion** | String/Geográfico | Línea principal de la dirección de facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de facturacion 2** | String/Geográfico | Segunda línea de la dirección de facturación (opcional). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion de facturacion 3** | String/Geográfico | Tercera línea de la dirección de facturación (opcional). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Telefono de facturacion** | String (Identificación) | Número de teléfono principal de contacto para la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Telefono de facturacion 2** | String (Identificación) | Número de teléfono secundario de contacto para la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Ciudad de facturacion** | String/Geográfico | Ciudad para la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Codigo postal de facturacion** | String/Numérico (ID) | Código postal de la dirección de facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Pais de facturacion** | String/Geográfico | País de la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Barrio de facturacion** | String/Geográfico | Barrio o comuna para la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Region de facturacion** | String/Geográfico | Región o estado de la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Metodo de pago** | Categórico | Categoría del método de pago utilizado. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Precio pagado** | Numérico (Moneda) | Valor monetario total pagado por el cliente. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Precio unitario** | Numérico (Moneda) | Valor monetario del artículo individual. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Costo de envio** | Numérico (Moneda) | Valor monetario del costo de envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Creditos de monedero** | Numérico (Moneda) | Valor monetario de créditos o puntos utilizados. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Monto de impuestos** | Numérico (Moneda) | Valor monetario de los impuestos aplicados. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Nombre del articulo** | String/Geográfico | Nombre completo del artículo comprado. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Variacion** | Categórico | Variación del producto (ej. color, talla, modelo). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Proveedor de envio** | String/Mixto | Nombre del proveedor de envío o paquetería principal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Tipo de envio** | Categórico | Categoría del tipo de envío (ej. Express, Regular, Dropshipping). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Tipo de proveedor de envio** | Categórico | Tipo de proveedor de envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Codigo de seguimiento** | String/Numérico (ID) | Código de seguimiento principal del envío. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **URL de seguimiento** | String (URL) | Enlace de seguimiento del pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Proveedor de envio (primer tramo)** | String/Mixto | Proveedor de envío para la primera etapa de la logística. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Codigo de seguimiento (primer tramo)** | String/Numérico (ID) | Código de seguimiento para el primer tramo. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **URL de seguimiento (primer tramo)** | String (URL) | Enlace de seguimiento para el primer tramo. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Tiempo de envio prometido** | Fecha/Timestamp | Fecha u hora de entrega prometida. (**Requiere conversión a `datetime`**). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Estado** | Categórico | Estado actual del pedido (ej. `delivered`, `shipped`, `canceled`). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Canal de cumplimiento** | Categórico | Canal o método de gestión del pedido (ej. Fulfilled by Seller). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Motivo de cancelacion** | Categórico | Razón por la cual el pedido fue cancelado (si aplica). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Nombre Legal** | String/Geográfico | Nombre legal de la entidad o persona asociada a la facturación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Direccion** | String/Geográfico | Dirección legal o fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Region** | String/Geográfico | Región o estado legal/fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Ciudad** | String/Geográfico | Ciudad legal/fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Municipalidad** | String/Geográfico | Municipalidad o comuna legal/fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Documento de Identificacion** | String/Numérico (ID) | Identificador único del elemento o pedido. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Numero de Documento** | String/Numérico (ID) | Número de documento de identificación (ej. RUT, Cédula). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Actividad Economica** | String/Geográfico | Descripción de la actividad económica (si aplica). | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Verificador del Documento** | String (Identificación) | Dígito verificador del documento de identificación. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Correo Electronico** | String/Geográfico | Correo electrónico de contacto legal/fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |
+| **Telefono** | String (Identificación) | Teléfono de contacto legal/fiscal. | Varía según la variable. Requiere inspección de los datos crudos (ej. `'45,000.00'`, `'delivered'`, `'oct 8, 2025 22:35'`). | Necesario: Limpieza de nulos. Conversión a tipo de dato correcto (e.g., `datetime`, `float` para moneda, `int` para IDs, normalización de strings). |

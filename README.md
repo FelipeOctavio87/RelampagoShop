@@ -139,7 +139,38 @@ Variables Para Analizar el Resultado:
 | **Reclamo cerrado** | Categórico (Booleano) | Indica si hay un reclamo cerrado. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
 | **Con mediación** | Categórico (Booleano) | Indica si el reclamo requirió la mediación de ML. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
 
+# Diccionario de Variables de Ventas de París
 
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **Nro_orden** | String/Numérico (ID) | Número de identificación único del pedido/orden. | **Numérico entero** (ej. `3042231950`). | Conversión a **`string`** para evitar pérdida de precisión y tratamiento como identificador. |
+| **Nro_Devolucion** | String/Numérico (ID) | Número de identificación de la devolución, si aplica. | **String** (ej. `N/A`) o **vacío**. | **Imputar 0** o **`null`** y **limpiar el string `N/A`**. Mantenimiento como `string`. |
+| **Nombre_Cliente** | String/Geográfico | Nombre completo del cliente que realizó la compra. | **String** (ej. `Kevin Alejandro Muñoz Mora`). | Limpieza de caracteres y **normalización de mayúsculas/minúsculas**. |
+| **Número de documento** | String/Numérico (ID) | Número de identificación del cliente (ej. RUT). | **Numérico/String** (ej. `183650610`). | Conversión a **`string`** para preservar el formato. |
+| **Email_cliente** | String/Geográfico | Correo electrónico de contacto del cliente. | **String** (ej. `kevinalejandro.munozmora@gmail.com`). | **Verificación de formato de email** y estandarización a minúsculas. |
+| **Telefono_cliente** | String (Identificación) | Número de teléfono de contacto del cliente. | **String** que incluye prefijo (ej. `+56953375737`). | **Estandarizar a formato numérico** (eliminar `+569` y/o caracteres no numéricos). |
+| **Fecha_de_compra** | Fecha/Timestamp | Fecha y hora exactas en que se realizó la compra. | **String de Fecha/Hora** en formato `YYYY-MM-DD HH:MM:SS` (ej. `2025-09-08 16:14:58`). | Conversión a tipo **`datetime`**. |
+| **Fecha de entrega al courier** | Fecha/Timestamp | Fecha en que el producto fue entregado al transportista. | **String de Fecha** en formato `YYYY-MM-DD` (ej. `2025-09-09`). | Conversión a tipo **`date`** o **`datetime`** (asumiendo hora 00:00:00). |
+| **Fecha de entrega prometida al cliente** | Fecha/Timestamp | Fecha máxima de entrega prometida al cliente. | **String de Fecha** en formato `YYYY-MM-DD` (ej. `2025-09-10`). | Conversión a tipo **`date`** o **`datetime`**. |
+| **Nombre_Producto** | String/Mixto | Nombre comercial completo del producto. | **String** (ej. `Bicicleta Artemisa 3 Cambios Shimano Negro`). | **Limpieza de texto** y normalización. |
+| **Precio** | Numérico (Moneda) | Precio de lista (sin descuento, si aplica) del producto. | **Numérico con punto decimal** (ej. `159736.0`). | Conversión a tipo **`float`** (moneda). |
+| **Precio pago cliente** | Numérico (Moneda) | Precio final pagado por el cliente por el producto. | **Numérico con punto decimal** (ej. `159736.0`). | Conversión a tipo **`float`** (moneda). |
+| **Costo_despacho** | Numérico (Moneda) | Monto cobrado al cliente por concepto de envío. | **Numérico con punto decimal** (ej. `9990.0`, `0.0`). | Conversión a tipo **`float`** (moneda). |
+| **Comuna** | String/Geográfico | Comuna o municipalidad de destino del envío. | **String** (ej. `La Pintana`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Dirección de envío** | String/Geográfico | Dirección física de entrega. | **String** (ej. `Niebla 12851 Gabriela Mistral`). | **Estandarización** de abreviaturas. |
+| **Region** | String/Geográfico | Región o estado de destino del envío. | **String** (ej. `Región Metropolitana`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Sku_marketplace** | String/Numérico (ID) | SKU del producto en la plataforma de venta (marketplace). | **Alfanumérico** (ej. `MK8FJGU07V-1`). | **Mantenimiento como string.** |
+| **Sku_seller** | String/Numérico (ID) | SKU del producto proporcionado por el vendedor (seller). | **Numérico/String** (ej. `9626613525477`). | **Mantenimiento como string** para preservar formato. |
+| **Estado** | Categórico | Estado actual del pedido (ej. `Entregado`, `Enviado`). | **String** (ej. `Entregado`). | **Mantenimiento como categórico/string.** |
+| **Documento** | Categórico | Tipo de documento fiscal emitido para la venta. | **String** (ej. `boleta`). | **Mantenimiento como categórico/string.** |
+| **Razón social** | String/Geográfico | Razón social de la empresa de facturación (si aplica). | **Vacío** en la muestra. | **Detección de nulos** y limpieza. |
+| **Rut** | String/Numérico (ID) | RUT de la empresa de facturación (si aplica). | **Vacío** en la muestra. | **Detección de nulos** y **conversión a string**. |
+| **Giro** | String/Mixto | Giro o actividad económica de la empresa de facturación. | **Vacío** en la muestra. | **Detección de nulos** y limpieza. |
+| **Dirección facturación** | String/Geográfico | Dirección de facturación. | **Vacío** en la muestra. | **Detección de nulos** y limpieza. |
+| **Comuna.1** | String/Geográfico | Comuna o municipalidad de facturación (columna duplicada/alternativa). | **Vacío** en la muestra. | **Detección de nulos** y **normalización**. |
+| **Región** | String/Geográfico | Región o estado de facturación (columna duplicada/alternativa). | **Vacío** en la muestra. | **Detección de nulos** y **normalización**. |
+| **Fulfillment** | Categórico (Booleano) | Indica si el pedido fue gestionado por el servicio de Fulfillment. | **String** (ej. `no`). | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **OPL** | Categórico | Operador Logístico (Courier) asignado. | **String** (ej. `BLUEXPRESS`). | **Mantenimiento como categórico/string.** |
 
 
 

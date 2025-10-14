@@ -175,7 +175,45 @@ Variables Para Analizar el Resultado:
 
 
 
+# Diccionario de Variables de Ventas de Walmart
 
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **Número de orden de compra** | String/Numérico (ID) | Número de identificación del pedido a nivel de orden de compra. | **Alfanumérico** (ej. `P110476348`). | **Mantenimiento como string** para preservar formato. |
+| **Número De Orden** | String/Numérico (ID) | Número de identificación del pedido a nivel de línea o ítem. | **Numérico entero grande** (ej. `8182571000070`). | Conversión a **`string`** para tratar como ID y evitar pérdida de precisión. |
+| **Fecha de orden** | Fecha/Timestamp | Fecha en que el cliente realizó el pedido. | **String de Fecha** en formato `YYYY-MM-DD` (ej. `2025-09-09`). | Conversión a tipo **`date`** o **`datetime`**. |
+| **Fecha Máxima de entrega a Courier** | Fecha/Timestamp | Fecha límite para que el vendedor entregue el producto al transportista. | **String de Fecha** en formato `YYYY-MM-DD` (ej. `2025-09-10`). | Conversión a tipo **`date`** o **`datetime`**. |
+| **Entrega estimada al cliente** | Fecha/Timestamp | Fecha de entrega esperada para el cliente. | **String de Fecha** en formato `YYYY-MM-DD` (ej. `2025-09-15`). | Conversión a tipo **`date`** o **`datetime`**. |
+| **Nombre del cliente** | String/Geográfico | Nombre completo del cliente que realizó el pedido. | **String** (ej. `Clienteregistrado Lidercl`). | Limpieza de caracteres y **normalización de mayúsculas/minúsculas**. |
+| **Dirección de envío del cliente** | String/Geográfico | Dirección completa de envío, a menudo concatenando todos los campos. | **String largo** que incluye nombre, dirección, comuna, región y teléfono. | **Extraer el número de teléfono** y **dividir** el resto de la dirección en sus componentes si es necesario. |
+| **Número de teléfono del cliente** | String (Identificación) | Número de teléfono de contacto del cliente. | **String** que incluye prefijo (ej. `56933327804`). | Estandarizar a formato numérico (eliminar prefijos, espacios o guiones). |
+| **Enviar a la dirección 1** | String/Geográfico | Primera línea (calle) de la dirección de envío. | **String** (ej. `PICTON`, `Buenos Aires`). | **Normalización** de nombres de calles. |
+| **Enviar a la dirección 2** | String/Geográfico | Segunda línea (número y detalles) de la dirección de envío. | **String** (ej. `3067`, `626,casa`). | **Separar número** de los detalles de la casa/departamento. |
+| **Ciudad** | String/Geográfico | Ciudad de destino del envío. | **String** (ej. `Peñaflor`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Estado - Envío** | String/Geográfico | Región o estado de destino del envío. | **String** (ej. `Metropolitana de Santiago`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Código Postal** | String/Numérico (ID) | Código postal de envío. | **Vacío** o un **String/Numérico**. | **Detección de nulos** y mantenimiento como **`string`**. |
+| **Nombre de nodo de barco predicho** | String/Geográfico | Nombre predicho para el punto de envío. | **String** (ej. `LEVEM SPA`). | **Mantenimiento como categórico/string.** |
+| **ID de nodo de envío previsto** | String/Numérico (ID) | ID del nodo de envío predicho. | **Numérico entero** (ej. `10001496002`). | **Mantenimiento como string** para evitar errores. |
+| **Entidad de cumplimiento** | Categórico | Indica quién gestiona la logística (fulfillment). | **String** (ej. `SellerFulfilled`). | **Mantenimiento como categórico/string.** |
+| **FLIDs** | String/Numérico (ID) | Identificador logístico (FLIDs). | **Numérico entero** (ej. `1`). | **Mantenimiento como string** o **`int`**. |
+| **Número de línea** | Numérico (Contador) | Número de línea dentro de la orden. | **Numérico entero** (ej. `1`). | Conversión a tipo **`int`**. |
+| **Número De Línea De Envío** | Numérico (Contador) | Número de línea de envío. | **Numérico entero** (ej. `1`). | Conversión a tipo **`int`**. |
+| **UPC** | String/Numérico (ID) | Código Universal de Producto (UPC). | **Numérico/String** (ej. `00800000822446`). | **Mantenimiento como string** para preservar ceros a la izquierda. |
+| **Estado** | Categórico | Estado actual del pedido (ej. `Enviado`, `Entregado`). | **String** (ej. `Enviado`). | **Mantenimiento como categórico/string.** |
+| **Nombre del producto** | String/Mixto | Nombre del producto. | **String** (ej. `Sábana 2 Plazas 144 Hilos Estampada Trento`). | **Limpieza de texto** y normalización. |
+| **Método de envío** | Categórico | Tipo de servicio de envío. | **String** (ej. `STANDARD`). | **Mantenimiento como categórico/string.** |
+| **Cantidad** | Numérico (Contador) | Cantidad de unidades de este producto. | **Numérico entero** (ej. `1`). | Conversión a tipo **`int`**. |
+| **SKU** | String/Numérico (ID) | SKU del vendedor para el producto. | **Numérico/String** (ej. `8000008224462`). | **Mantenimiento como string** para preservar formato. |
+| **Precio** | Numérico (Moneda) | Precio del artículo (antes de descuento, si aplica). | **Numérico con punto decimal** (ej. `2268.0`). | Conversión a tipo **`float`** (moneda). |
+| **Costo de envío** | Numérico (Moneda) | Costo de envío asociado a la línea de pedido. | **Numérico con punto decimal** (ej. `699.0`). | Conversión a tipo **`float`** (moneda). |
+| **Impuesto** | Numérico (Moneda) | Monto de impuesto cobrado. | **Numérico con punto decimal** (ej. `4124.0`). | Conversión a tipo **`float`** (moneda). |
+| **Comisión** | Numérico (Moneda) | Comisión cobrada por la plataforma. | **Numérico con punto decimal** (ej. `3500.0`). | Conversión a tipo **`float`** (moneda). |
+| **Descuento** | Numérico (Moneda) | Descuento aplicado al producto. | **Numérico con punto decimal** (ej. `832.0`). | Conversión a tipo **`float`** (moneda). |
+| **Portador** | Categórico | Nombre del transportista (carrier). | **String** (ej. `BLUEXPRESS`). | **Mantenimiento como categórico/string.** |
+| **Número De Rastreo** | String/Numérico (ID) | Código de seguimiento del envío. | **Numérico/String** (ej. `9348932014`). | **Mantenimiento como string** para evitar la pérdida de ceros a la izquierda. |
+| **Rastreo URL** | String (URL) | Enlace para el seguimiento del envío. | **URL** (ej. `https://api.enviame.io/s2/...`). | **Detección de nulos** y validación de formato URL. |
+| **Estado de actualización** | String/Mixto | Último estado de actualización del pedido. | **Comúnmente vacío** en la muestra. | **Detección de nulos** y limpieza. |
+| **Cantidad de actualización** | Numérico (Contador) | Cantidad de unidades actualizadas (si aplica). | **Comúnmente vacío** en la muestra. | **Detección de nulos** e **imputar 0** si corresponde a una cantidad. |
 
 
 

@@ -1,8 +1,12 @@
-Falabella:
-Variables:
 
-| Fecha de Venta | Fecha | Producto | Descripción | Precio de Venta Item c/Iva | Cantidad | Descuento | Subtotal | Envío | Tipo de Envío | Comisión | Total | Precio de Venta s/Iva | Iva | P*Q s/ Iva | P*Q s/ Iva - comisión | Pvta s/iva - comisión | Costo Unitario S/ Iva | Costo Total s/ Iva | Margen  Neto | % Margen | valor gasto | Margen - Gasto | Ingreso Total | Gasto Total | Col26 | Col27 | Col28 |
+Variables Para Analizar el Resultado:
+
+| Fecha de Venta | Fecha | Producto | Descripción | Precio de Venta Item c/Iva | Cantidad | Descuento | Subtotal | Envío | Tipo de Envío | Comisión | Total | Precio de Venta s/Iva | Iva | P*Q s/ Iva | P*Q s/ Iva - comisión | Pvta s/iva - comisión | Costo Unitario S/ Iva | Costo Total s/ Iva | Margen  Neto | % Margen | Valor Gasto | Margen - Gasto | Ingreso Total | Gasto Total | Costo Asignado | Col27 | Col 28 |
 |------|------|------|------|------|------|------|------|------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 | V1 | V2 | V3 | V4 | V5 | V6 | V7 | V8 | V9 | V10 | V11 | V12 | V13 | V14 | V15 | V16 | V17 | V18 | V19 | V20 | V21 | V22 | V23 | V24 | V25 | V26 | V27 | V28 |
 | V1 | V2 | V3 | V4 | V5 | V6 | V7 | V8 | V9 | V10 | V11 | V12 | V13 | V14 | V15 | V16 | V17 | V18 | V19 | V20 | V21 | V22 | V23 | V24 | V25 | V26 | V27 | V28 |
 
+Variables Falabella:
+
+| ID del articulo del pedido | SKU del vendedor | SKU de Falabella | Creado el | Numero de pedido | ID de pedido | Origen del pedido | Moneda del pedido | Documento requerido | Nombre del cliente | Correo electronico del cliente | Numero de registro nacional | Nombre de envio | Direccion de envio | Direccion de envio 2 | Direccion de envio 3 | Telefono de envio | Telefono de envio 2 | Ciudad de envio | Codigo postal de envio | Pais de envio | Barrio de envio | Region de envio | Nombre de facturacion | Direccion de facturacion | Direccion de facturacion 2 | Direccion de facturacion 3 | Telefono de facturacion | Telefono de facturacion 2 | Ciudad de facturacion | Codigo postal de facturacion | Pais de facturacion | Barrio de facturacion | Region de facturacion | Metodo de pago | Precio pagado | Precio unitario | Costo de envio | Creditos de monedero | Monto de impuestos | Nombre del articulo | Variacion | Proveedor de envio | Tipo de envio | Tipo de proveedor de envio | Codigo de seguimiento | URL de seguimiento | Proveedor de envio (primer tramo) | Codigo de seguimiento (primer tramo) | URL de seguimiento (primer tramo) | Tiempo de envio prometido | Estado | Canal de cumplimiento | Motivo de cancelacion | Nombre Legal | Direccion | Region | Ciudad | Municipalidad | Documento de Identificacion | Numero de Documento | Actividad Economica | Verificador del Documento | Correo Electronico | Telefono |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ​

@@ -217,3 +217,54 @@ Variables Para Analizar el Resultado:
 
 
 
+# Diccionario de Variables de Ventas de Hites
+
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **id** | String/Numérico (ID) | Identificador único de la línea de pedido. | Números enteros (ej. `117699`). | Mantenimiento como **`int`** o **`string`**. |
+| **orderNumber** | String/Numérico (ID) | Número de la orden de pedido principal. | Números enteros (ej. `2388820101`). | Conversión a **`string`** para tratar como ID. |
+| **orderFather** | String/Numérico (ID) | Número de la orden de pedido padre (si es una orden dividida). | Números enteros (ej. `23888201`). | Conversión a **`string`** para tratar como ID. |
+| **documentNumber** | String/Numérico (ID) | Número de documento asociado al artículo (si aplica). | String (ej. `No disponible`) o número. | Manejo de la categoría `'No disponible'` como nulo. |
+| **sellerOrderNumber** | String/Numérico (ID) | Número de la orden asignado por el vendedor. | Números enteros (ej. `2388820101`). | Conversión a **`string`** para tratar como ID. |
+| **creation** | Fecha/Timestamp | Marca de tiempo (timestamp) de la creación del registro/pedido (en formato ISO 8601 con zona horaria). | String de Fecha/Hora (ej. `2025-08-27T16:33:29.000+0000`). | Conversión a tipo **`datetime`** y **normalización a una única zona horaria (UTC)**. |
+| **dateSale** | Fecha/Timestamp | Fecha de la venta. | Numérico que representa la fecha (ej. `20250827`). | Conversión a **`datetime`** (formato `YYYYMMDD`). |
+| **hourSale** | Fecha/Timestamp | Hora de la venta. | String de hora (ej. `12:33:29`). | Se puede **combinar con `dateSale`** para formar un `datetime` completo. |
+| **status** | Categórico/String | Estado principal del pedido. | String en mayúsculas (ej. `ENTREGADA`). | **Estandarización de mayúsculas/minúsculas.** Mantenimiento como categórico. |
+| **subStatus** | Categórico/String | Subestado del pedido (estado más detallado). | String en mayúsculas (ej. `ENTREGADA`). | **Estandarización de mayúsculas/minúsculas.** Mantenimiento como categórico. |
+| **motive** | Categórico/String | Motivo de la finalización del pedido (ej. `Entregado`, `Cancelado`). | String (ej. `Entregado`). | **Mantenimiento como categórico/string.** |
+| **totalProductGrossPrice** | Numérico (Moneda) | Precio total **bruto** de los productos (incluye impuestos). | Numérico entero (ej. `148650`). | Conversión a tipo **`float`** o **`int`** para cálculos. |
+| **totalProductNetPrice** | Numérico (Moneda) | Precio total **neto** de los productos (sin impuestos). | Numérico entero (ej. `124916`). | Conversión a tipo **`float`** o **`int`** para cálculos. |
+| **totalProductTaxPrice** | Numérico (Moneda) | Monto total de impuestos de los productos. | Numérico entero (ej. `23734`). | Conversión a tipo **`float`** o **`int`** para cálculos. |
+| **grossTotalAdjustment** | Numérico (Moneda) | Monto bruto de ajuste total (ej. descuentos/cargos extra a nivel total). | Numérico entero (ej. `0`). | Conversión a tipo **`float`**; **imputar 0** si es un valor de ajuste nulo. |
+| **netTotalAdjustment** | Numérico (Moneda) | Monto neto de ajuste total. | Numérico entero (ej. `0`). | Conversión a tipo **`float`**. |
+| **taxTotalAdjustment** | Numérico (Moneda) | Monto de impuestos del ajuste total. | Numérico entero (ej. `0`). | Conversión a tipo **`float`**. |
+| **grossShippingTotal** | Numérico (Moneda) | Costo total **bruto** del envío. | Numérico entero (ej. `12990`). | Conversión a tipo **`float`** o **`int`**. |
+| **netShippingTotal** | Numérico (Moneda) | Costo total **neto** del envío. | Numérico entero (ej. `10916`). | Conversión a tipo **`float`** o **`int`**. |
+| **taxShippingTotal** | Numérico (Moneda) | Monto total de impuestos del envío. | Numérico entero (ej. `2074`). | Conversión a tipo **`float`** o **`int`**. |
+| **grossTotal** | Numérico (Moneda) | Precio **bruto** total final del pedido (producto + envío + ajustes). | Numérico entero (ej. `161640`). | Conversión a tipo **`float`** o **`int`**. |
+| **netTotal** | Numérico (Moneda) | Precio **neto** total final del pedido. | Numérico entero (ej. `135832`). | Conversión a tipo **`float`** o **`int`**. |
+| **taxTotal** | Numérico (Moneda) | Monto total de impuestos del pedido. | Numérico entero (ej. `25808`). | Conversión a tipo **`float`** o **`int`**. |
+| **grossTotalFather** | Numérico (Moneda) | Precio **bruto** total final del pedido padre. | Numérico entero (ej. `161640`). | Conversión a tipo **`float`** o **`int`**. |
+| **netTotalFather** | Numérico (Moneda) | Precio **neto** total final del pedido padre. | Numérico entero (ej. `135832`). | Conversión a tipo **`float`** o **`int`**. |
+| **taxTotalFather** | Numérico (Moneda) | Monto total de impuestos del pedido padre. | Numérico entero (ej. `25808`). | Conversión a tipo **`float`** o **`int`**. |
+| **type** | Categórico/String | Tipo de registro o transacción. | String (ej. `ORDER`). | **Mantenimiento como categórico/string.** |
+| **sellerId** | String/Numérico (ID) | ID del vendedor. | Números enteros (ej. `10156`). | Mantenimiento como **`int`** o **`string`**. |
+| **sellerCode** | String/Numérico (ID) | Código del vendedor. | Números enteros (ej. `10156`). | Mantenimiento como **`string`**. |
+| **sellerName** | Categórico/String | Nombre comercial del vendedor. | String (ej. `LEVEM SPA`). | Limpieza de texto y **normalización**. |
+| **storeId** | String/Numérico (ID) | ID de la tienda asociada (si aplica). | Números enteros (ej. `1`). | Mantenimiento como **`int`** o **`string`**. |
+| **storeCode** | String/Numérico (ID) | Código de la tienda. | String (ej. `www.hites.com`). | **Mantenimiento como string.** |
+| **storeName** | Categórico/String | Nombre de la tienda/canal de venta. | String (ej. `Hites`). | Limpieza de texto y **normalización**. |
+| **originCode** | String/Numérico (ID) | Código de origen de la venta. | String (ej. `003`). | **Mantenimiento como string.** |
+| **originName** | Categórico/String | Nombre de origen de la venta. | String (ej. `HITES`). | Limpieza de texto y **normalización**. |
+| **customerName** | Categórico/String | Nombre completo del cliente. | String con mezcla de mayúsculas/minúsculas (ej. `Acelimar patty Cardozo medina`). | **Normalización de mayúsculas/minúsculas.** |
+| **clientPhone** | Categórico/String | Número de teléfono del cliente. | String con formato de teléfono (ej. `+569 5985...`). | **Estandarizar a formato numérico** (eliminar espacios y `+`). |
+| **clientEmail** | Categórico/String | Correo electrónico del cliente. | String de email. | **Estandarización a minúsculas** y validación de formato. |
+| **taxation** | Categórico/String | Tipo de régimen tributario/fiscal. | String (ej. `net`). | **Mantenimiento como categórico/string.** |
+| **create** | Fecha/Timestamp | Marca de tiempo de creación del registro (alternativo/interno). | String de Fecha/Hora ISO 8601 (ej. `2025-08-27T16:33:29.058+0000`). | Conversión a tipo **`datetime`** y **normalización a una única zona horaria.** |
+| **update** | Fecha/Timestamp | Marca de tiempo de la última actualización del registro. | String de Fecha/Hora ISO 8601. | Conversión a tipo **`datetime`** y **normalización a una única zona horaria.** |
+| **currency** | Categórico/String | Código de moneda utilizada. | String (ej. `CLP`). | **Mantenimiento como categórico/string.** |
+| **errorCode** | Categórico/String | Código de error de la operación. | String (ej. `SUCCESS`) o vacío. | **Manejo de valores nulos/vacíos.** |
+| **errorMessage** | Categórico/String | Mensaje de error de la operación. | String (ej. `SUCCESS`) o vacío. | **Manejo de valores nulos/vacíos.** |
+| **rutSeller** | String/Numérico (ID) | RUT (Rol Único Tributario) del vendedor. | Numérico entero (ej. `76288540`). | Conversión a **`string`** para preservar formato. |
+| **logisticsIntegratorId** | String/Numérico (ID) | ID del integrador logístico. | Números enteros (ej. `1`). | Mantenimiento como **`string`** o **`int`**. |
+| **logisticsIntegratorName** | Categórico/String | Nombre del integrador logístico. | String (ej. `Enviame`). | Limpieza de texto y **normalización**. |

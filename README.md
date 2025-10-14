@@ -75,6 +75,70 @@ Variables Para Analizar el Resultado:
 | **Correo Electronico** | String/Geográfico | Correo electrónico de contacto legal/fiscal. | **Comúnmente vacío** en los registros de la muestra. | **Verificación de formato** y estandarización a minúsculas. |
 | **Telefono** | String (Identificación) | Teléfono de contacto legal/fiscal. | **Comúnmente vacío** en los registros de la muestra. | Estandarizar a formato numérico. |
 
+# Diccionario de Variables de Ventas de Mercado Libre
+
+| Variable | Tipo | Descripción | Valores originales | Preprocesado |
+| :--- | :--- | :--- | :--- | :--- |
+| **# de venta** | String/Numérico (ID) | Número de identificación único de la venta/pedido. | **Numérico entero grande** (ej. `2000009404442073`). | Conversión a **`string`** para preservar la integridad del ID. |
+| **Fecha de venta** | Fecha/Timestamp | Fecha y hora de la venta. | **String de Fecha/Hora** en formato español (ej. `"30 de septiembre de 2025 19:29 hs."`). | Conversión a **`datetime`** con manejo de la localización y el texto `hs.`. |
+| **Estado** | Categórico | Estado actual del pedido (ej. `Entregado`, `Cancelado`). | **String** (ej. `Entregado`). | **Mantenimiento como categórico/string.** Estandarización de mayúsculas/minúsculas. |
+| **Descripción del estado** | String/Mixto | Mensaje detallado sobre el estado del pedido. | **String** (ej. `Llegó el 1 de octubre`, `Podrás usar este dinero...`). | **Limpieza de texto** y estandarización; puede ser útil para análisis de sentimiento. |
+| **Paquete de varios productos** | Categórico (Booleano) | Indicador de si la venta incluye varios productos en un solo paquete. | **String** (ej. `Sí`, `No`). | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **Pertenece a un kit** | Categórico (Booleano) | Indicador de si el producto vendido forma parte de un kit o combo. | **String** (ej. `Sí`, `No`). | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **Unidades** | Numérico (Contador) | Número de unidades vendidas. | **Numérico entero** (ej. `1`, `2`). | Conversión a tipo **`int`**. |
+| **Ingresos por productos (CLP)** | Numérico (Moneda) | Ingresos totales de la venta por productos en pesos chilenos. | **Numérico entero** (ej. `68588`, `456576`). | Conversión a tipo **`float`** (moneda). |
+| **Cargo por venta e impuestos (CLP)** | Numérico (Moneda) | Total de cargos e impuestos cobrados por la plataforma (valor negativo). | **Numérico entero** (ej. `-11660`, `-74484`). | Conversión a tipo **`float`** (moneda). |
+| **Ingresos por envío (CLP)** | Numérico (Moneda) | Ingresos generados por el cobro del envío. | **Numérico entero** o **vacío**. | Conversión a tipo **`float`**; **imputar 0** a valores nulos (NA). |
+| **Costos de envío (CLP)** | Numérico (Moneda) | Costos incurridos por el envío. | **Numérico entero** o **vacío**. | Conversión a tipo **`float`**; **imputar 0** a valores nulos (NA). |
+| **Anulaciones y reembolsos (CLP)** | Numérico (Moneda) | Monto total de anulaciones y reembolsos. | **Numérico entero** o **vacío**. | Conversión a tipo **`float`**; **imputar 0** a valores nulos (NA). |
+| **Total (CLP)** | Numérico (Moneda) | Monto total final después de cargos y costos. | **Numérico entero** o **vacío**. | Conversión a tipo **`float`** (moneda). |
+| **Mes de facturación de tus cargos** | Fecha/Timestamp | Mes al que corresponden los cargos de la venta. | **String de mes y año** (ej. `septiembre 2025`). | Conversión a **`datetime`** (primer día del mes) para facilitar el agrupamiento. |
+| **Venta por publicidad** | Categórico (Booleano) | Indica si la venta provino de una campaña de publicidad. | **Vacío** o un indicador (ej. `Sí`). | Mapear a **Binario** (`1`/`0`); imputar `0` o `No` a valores nulos. |
+| **SKU** | String/Numérico (ID) | Código SKU del producto. | **Alfanumérico/Numérico** (ej. `1007005021254`). | Mantenimiento como **`string`** para preservar ceros a la izquierda. |
+| **# de publicación** | String/Numérico (ID) | Identificador de la publicación en Mercado Libre. | **Alfanumérico** (ej. `MLC1084299282`). | **Mantenimiento como string.** |
+| **Canal de venta** | Categórico | Plataforma específica donde se realizó la venta. | **String** (ej. `Mercado Libre`, `Mercado Shops`). | **Mantenimiento como categórico/string.** |
+| **Título de la publicación** | String/Mixto | Nombre o título del producto. | **String** (ej. `Mesa Auxiliar Plegable Fabricación Nacional Envío Gratis`). | **Limpieza de texto** y normalización. |
+| **Variante** | String/Mixto | Características específicas del producto (ej. color, talla). | **String** (ej. `Color : Jerez Negro`). | **Extraer el valor** de la característica (ej. solo `Jerez Negro`). |
+| **Precio unitario de venta de la publicación (CLP)** | Numérico (Moneda) | Precio de venta de una unidad del producto publicado. | **Numérico entero** (ej. `25600`). | Conversión a tipo **`float`** (moneda). |
+| **Tipo de publicación** | Categórico | Tipo de listado (ej. `Premium`, `Clásica`). | **String** (ej. `Premium`). | **Mantenimiento como categórico/string.** |
+| **Factura adjunta** | Categórico (Booleano) | Indica si se adjuntó una factura. | **String** (ej. `Factura adjunta`). | Mapear a **Booleano** (`True`/`False`). |
+| **Datos personales o de empresa** | String/Geográfico | Nombre completo del comprador o razón social de la empresa. | **String** (ej. `Ricardo Ulises Castro Serrano`). | Limpieza y **normalización de mayúsculas/minúsculas**. |
+| **Tipo y número de documento** | String/Mixto | Tipo y número de identificación fiscal (ej. RUT). | **String** (ej. `RUT 194680848`). | **Separar en dos columnas** (Tipo y Número) si es necesario para análisis fiscal. |
+| **Dirección** | String/Geográfico | Dirección fiscal/de facturación. | **String** (ej. `"José Santos Ossa 26, Vallenar, Atacama"`). | **Estandarización** de abreviaturas y limpieza. |
+| **Tipo de contribuyente** | Categórico | Categoría del tipo de contribuyente. | **Comúnmente vacío.** | **Detección y tratamiento de nulos** o imputar 'No Aplica'. |
+| **Actividad económica** | String/Mixto | Descripción de la actividad económica. | **Comúnmente vacío.** | **Detección y tratamiento de nulos.** |
+| **Comprador** | String/Geográfico | Nombre del comprador. | **String** (ej. `Ricardo Ulises Castro Serrano`). | Limpieza y **normalización**. |
+| **Negocio** | Categórico (Booleano) | Indica si el comprador es una empresa o persona natural. | **String** (ej. `No`). | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **Cédula** | String/Numérico (ID) | Número de cédula/identificación del comprador. | **Numérico/String** (ej. `194680848`). | Conversión a **`string`** para preservar el formato. |
+| **Domicilio** | String/Geográfico | Dirección de envío del comprador. | **String** (ej. `"José Santos Ossa 26 / Jose Santos Ossa por la subida de la gruta - Vallenar..."`). | **Limpieza de texto adicional** y geocodificación si se necesita alta precisión. |
+| **Comuna** | String/Geográfico | Comuna o municipalidad de envío. | **String** (ej. `Vallenar`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Estado.1** | String/Geográfico | Región o estado de envío. | **String** (ej. `Atacama`). | **Normalización de mayúsculas/minúsculas** y acentos. |
+| **Código postal** | String/Numérico (ID) | Código postal de envío. | **Vacío** o un **String/Numérico**. | Conversión a **`string`** si no se requiere para cálculos. |
+| **País** | String/Geográfico | País de envío. | **String** (ej. `Chile`). | **Mantenimiento como categórico/string.** |
+| **Forma de entrega** | Categórico | Tipo de logística de entrega para el envío. | **String** (ej. `Correo y puntos de despacho`, `Domicilio`). | **Mantenimiento como categórico/string.** |
+| **Fecha en camino** | Fecha/Timestamp | Fecha y hora en que el envío salió a ruta. | **String** (ej. `"1 de septiembre \| 23:52"`). | Conversión a **`datetime`** con manejo del separador (`\|`). |
+| **Fecha entregado** | Fecha/Timestamp | Fecha y hora de la entrega final. | **String** (ej. `"2 de septiembre \| 18:15"`). | Conversión a **`datetime`**. |
+| **Transportista** | Categórico | Nombre del transportista o paquetería. | **String** (ej. `MercadoEnvios`). | **Mantenimiento como categórico/string.** |
+| **Número de seguimiento** | String/Numérico (ID) | Código de seguimiento del envío. | **Alfanumérico/UUID** (ej. `23cfd845-e110...`). | **Mantenimiento como string** para preservar el formato. |
+| **URL de seguimiento** | String (URL) | Enlace para rastrear el envío. | **URL** o **vacío**. | **Detección de nulos** y validación de formato URL. |
+| **Unidades.1** | Numérico (Contador) | Unidades vendidas en caso de devolución. | **Numérico entero** o **vacío** (parece ser parte de la sección Devoluciones). | Conversión a tipo **`int`**; **imputar 0** a valores nulos. |
+| **Forma de entrega.1** | Categórico | Forma de entrega asociada a la devolución. | **Vacío** o un **String**. | **Detección de nulos** y **normalización**. |
+| **Fecha en camino.1** | Fecha/Timestamp | Fecha en camino asociada a la devolución. | **Vacío** o una **Fecha**. | Conversión a **`datetime`**; **detección de nulos**. |
+| **Fecha entregado.1** | Fecha/Timestamp | Fecha de entrega asociada a la devolución. | **Vacío** o una **Fecha**. | Conversión a **`datetime`**; **detección de nulos**. |
+| **Transportista.1** | Categórico | Transportista asociado a la devolución. | **Vacío** o un **String**. | **Detección de nulos** y **normalización**. |
+| **Número de seguimiento.1** | String/Numérico (ID) | Número de seguimiento asociado a la devolución. | **Vacío** o un **String**. | **Detección de nulos** y **conversión a string**. |
+| **URL de seguimiento.1** | String (URL) | URL de seguimiento asociado a la devolución. | **Vacío** o una **URL**. | **Detección de nulos** y validación de URL. |
+| **Revisado por Mercado Libre** | Categórico (Booleano) | Indica si la devolución fue revisada por ML. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`). |
+| **Fecha de revisión** | Fecha/Timestamp | Fecha de la revisión de la devolución. | **Vacío** o una **Fecha**. | Conversión a **`datetime`**; **detección de nulos**. |
+| **Dinero a favor** | Numérico (Moneda) | Monto de dinero a favor del vendedor por la devolución. | **Numérico** o **vacío**. | Conversión a tipo **`float`**; **imputar 0** a nulos. |
+| **Resultado** | Categórico | Resultado final del proceso de devolución. | **String** o **vacío**. | **Mantenimiento como categórico/string.** |
+| **Destino** | String/Mixto | Destino de la unidad devuelta. | **String** o **vacío**. | **Mantenimiento como string.** |
+| **Motivo del resultado** | String/Mixto | Motivo detallado del resultado de la devolución. | **String** o **vacío**. | **Mantenimiento como string.** |
+| **Unidades.2** | Numérico (Contador) | Número de unidades en reclamo. | **Numérico entero** o **vacío** (parece ser parte de la sección Reclamos). | Conversión a tipo **`int`**; **imputar 0** a valores nulos. |
+| **Reclamo abierto** | Categórico (Booleano) | Indica si hay un reclamo abierto. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **Reclamo cerrado** | Categórico (Booleano) | Indica si hay un reclamo cerrado. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+| **Con mediación** | Categórico (Booleano) | Indica si el reclamo requirió la mediación de ML. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+
 
 
 

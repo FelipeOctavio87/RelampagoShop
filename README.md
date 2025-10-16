@@ -383,7 +383,7 @@
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
 
 </details>
-### 🧰 Tecnologías utilizadas
+🧰 Tecnologías utilizadas
 
 ![Static Badge](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)

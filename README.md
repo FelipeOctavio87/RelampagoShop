@@ -296,7 +296,10 @@
 
 # Diccionario de Variables de Ventas de Shopify
 
-| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
+<details>
+<summary><strong>Diccionario de Variables de Ventas de Shopify</strong></summary>
+
+| **Atributo** | **Tipo** | **Descripción** | **Valores originales** | **Preprocesado** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Name** | String/Numérico (ID) | Número de identificación de la orden. | String (ej. `#8041`). | Conversión a **`string`** y **extracción del número** (quitar `#`). |
 | **Email** | String/Geográfico | Correo electrónico de contacto del cliente. | String (ej. `meli.munoze@gmail.com`). | **Estandarización a minúsculas** y validación de formato. |
@@ -377,3 +380,5 @@
 | **Payment Terms Name** | Categórico | Nombre de los términos de pago. | String o **vacío**. | **Mantenimiento como categórico.** |
 | **Next Payment Due At** | Fecha/Timestamp | Fecha de próximo pago pendiente. | String de Fecha/Hora con zona horaria o **vacío**. | Conversión a tipo **`datetime`**. |
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
+
+</details>

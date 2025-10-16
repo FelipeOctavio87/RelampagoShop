@@ -1,7 +1,7 @@
 
 ![Inicio Relampago](https://github.com/user-attachments/assets/050dddd9-ce40-4f64-9752-3247aff07764#vitrinedev)
 
-### Índice
+# Índice
 1. Descripción del proyecto.
 2. Acceso al proyecto
 3. Etapas del proyecto.
@@ -11,9 +11,10 @@
 7. Agradecimientos.
 8. Desarrollador del proyecto.
 
-# Diccionario de Variables
+# 4.- Descripción de los datos
+## Diccionario de Variables
 
-## Falabella
+### Falabella
 <details>
 <summary><strong>Diccionario de Variables de Falabella</strong></summary>
 
@@ -86,7 +87,7 @@
 | **Telefono** | String (Identificación) | Teléfono de contacto legal/fiscal. | **Comúnmente vacío** en los registros de la muestra. | Estandarizar a formato numérico. |
 </details>
 
-## Mercado Libre
+### Mercado Libre
 
 <details>
 <summary><strong>Diccionario de Variables de Mercado Libre</strong></summary>
@@ -155,7 +156,7 @@
 
 </details>
 
-## París
+### París
 
 <details>
 <summary><strong>Diccionario de Variables de Ventas de París</strong></summary>
@@ -193,7 +194,7 @@
 
 </details>
 
-## Walmart
+### Walmart
 
 <details>
 <summary><strong>Diccionario de Variables de Ventas de Walmart</strong></summary>
@@ -239,7 +240,7 @@
 </details>
 
 
-## Hites
+### Hites
 <details>
 <summary><strong>Diccionario de Variables de Ventas de Hites</strong></summary>
 
@@ -295,7 +296,7 @@
 
 </details>
 
-## Shopify
+### Shopify
 
 <details>
 <summary><strong>Diccionario de Variables de Ventas de Shopify</strong></summary>

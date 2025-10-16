@@ -383,3 +383,17 @@
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
 
 </details>
+### 🧰 Tecnologías utilizadas
+
+![Static Badge](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Jupyter_Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Static Badge](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Power_Query-00A2ED?style=for-the-badge&logo=microsoft-power-bi&logoColor=white)
+![Static Badge](https://img.shields.io/badge/CSV_Files-FF9900?style=for-the-badge&logo=file&logoColor=white)
+![Static Badge](https://img.shields.io/badge/ETL_Process-00897B?style=for-the-badge&logo=apache-airflow&logoColor=white)
+![Static Badge](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Data_Cleaning-4CAF50?style=for-the-badge&logo=databricks&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Visualization-FF6384?style=for-the-badge&logo=plotly&logoColor=white)
+![Static Badge](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)

@@ -156,7 +156,10 @@
 
 # Diccionario de Variables de Ventas de París
 
-| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
+<details>
+<summary><strong>Diccionario de Variables de Ventas de París</strong></summary>
+
+| **Atributo** | **Tipo** | **Descripción** | **Valores originales** | **Preprocesado** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Nro_orden** | String/Numérico (ID) | Número de identificación único del pedido/orden. | **Numérico entero** (ej. `3042231950`). | Conversión a **`string`** para evitar pérdida de precisión y tratamiento como identificador. |
 | **Nro_Devolucion** | String/Numérico (ID) | Número de identificación de la devolución, si aplica. | **String** (ej. `N/A`) o **vacío**. | **Imputar 0** o **`null`** y **limpiar el string `N/A`**. Mantenimiento como `string`. |
@@ -187,8 +190,7 @@
 | **Fulfillment** | Categórico (Booleano) | Indica si el pedido fue gestionado por el servicio de Fulfillment. | **String** (ej. `no`). | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
 | **OPL** | Categórico | Operador Logístico (Courier) asignado. | **String** (ej. `BLUEXPRESS`). | **Mantenimiento como categórico/string.** |
 
-
-
+</details>
 
 # Diccionario de Variables de Ventas de Walmart
 

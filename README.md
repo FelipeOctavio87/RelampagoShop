@@ -2,7 +2,6 @@
 ![Inicio Relampago](https://github.com/user-attachments/assets/050dddd9-ce40-4f64-9752-3247aff07764#vitrinedev)
 
 ### Índice
-
 1. Descripción del proyecto.
 2. Acceso al proyecto
 3. Etapas del proyecto.

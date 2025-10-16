@@ -1,4 +1,6 @@
 
+![Inicio Relampago](https://github.com/user-attachments/assets/050dddd9-ce40-4f64-9752-3247aff07764#vitrinedev)
+
 # Diccionario de Variables
 
 # Diccionario de Variables de Falabella

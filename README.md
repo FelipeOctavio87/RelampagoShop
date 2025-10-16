@@ -238,10 +238,11 @@
 </details>
 
 
-
 # Diccionario de Variables de Ventas de Hites
+<details>
+<summary><strong>Diccionario de Variables de Ventas de Hites</strong></summary>
 
-| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
+| **Atributo** | **Tipo** | **Descripción** | **Valores originales** | **Preprocesado** |
 | :--- | :--- | :--- | :--- | :--- |
 | **id** | String/Numérico (ID) | Identificador único de la línea de pedido. | Números enteros (ej. `117699`). | Mantenimiento como **`int`** o **`string`**. |
 | **orderNumber** | String/Numérico (ID) | Número de la orden de pedido principal. | Números enteros (ej. `2388820101`). | Conversión a **`string`** para tratar como ID. |
@@ -290,6 +291,8 @@
 | **rutSeller** | String/Numérico (ID) | RUT (Rol Único Tributario) del vendedor. | Numérico entero (ej. `76288540`). | Conversión a **`string`** para preservar formato. |
 | **logisticsIntegratorId** | String/Numérico (ID) | ID del integrador logístico. | Números enteros (ej. `1`). | Mantenimiento como **`string`** o **`int`**. |
 | **logisticsIntegratorName** | Categórico/String | Nombre del integrador logístico. | String (ej. `Enviame`). | Limpieza de texto y **normalización**. |
+
+</details>
 
 # Diccionario de Variables de Ventas de Shopify
 

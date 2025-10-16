@@ -194,7 +194,10 @@
 
 # Diccionario de Variables de Ventas de Walmart
 
-| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
+<details>
+<summary><strong>Diccionario de Variables de Ventas de Walmart</strong></summary>
+
+| **Atributo** | **Tipo** | **Descripción** | **Valores originales** | **Preprocesado** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Número de orden de compra** | String/Numérico (ID) | Número de identificación del pedido a nivel de orden de compra. | **Alfanumérico** (ej. `P110476348`). | **Mantenimiento como string** para preservar formato. |
 | **Número De Orden** | String/Numérico (ID) | Número de identificación del pedido a nivel de línea o ítem. | **Numérico entero grande** (ej. `8182571000070`). | Conversión a **`string`** para tratar como ID y evitar pérdida de precisión. |
@@ -231,6 +234,8 @@
 | **Rastreo URL** | String (URL) | Enlace para el seguimiento del envío. | **URL** (ej. `https://api.enviame.io/s2/...`). | **Detección de nulos** y validación de formato URL. |
 | **Estado de actualización** | String/Mixto | Último estado de actualización del pedido. | **Comúnmente vacío** en la muestra. | **Detección de nulos** y limpieza. |
 | **Cantidad de actualización** | Numérico (Contador) | Cantidad de unidades actualizadas (si aplica). | **Comúnmente vacío** en la muestra. | **Detección de nulos** e **imputar 0** si corresponde a una cantidad. |
+
+</details>
 
 
 

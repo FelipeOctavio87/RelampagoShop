@@ -87,7 +87,10 @@
 
 # Diccionario de Variables de Ventas de Mercado Libre
 
-| Atributo | Tipo | Descripción | Valores originales | Preprocesado |
+<details>
+<summary><strong>Diccionario de Variables de Mercado Libre</strong></summary>
+
+| **Atributo** | **Tipo** | **Descripción** | **Valores originales** | **Preprocesado** |
 | :--- | :--- | :--- | :--- | :--- |
 | **# de venta** | String/Numérico (ID) | Número de identificación único de la venta/pedido. | **Numérico entero grande** (ej. `2000009404442073`). | Conversión a **`string`** para preservar la integridad del ID. |
 | **Fecha de venta** | Fecha/Timestamp | Fecha y hora de la venta. | **String de Fecha/Hora** en formato español (ej. `"30 de septiembre de 2025 19:29 hs."`). | Conversión a **`datetime`** con manejo de la localización y el texto `hs.`. |
@@ -148,6 +151,8 @@
 | **Reclamo abierto** | Categórico (Booleano) | Indica si hay un reclamo abierto. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
 | **Reclamo cerrado** | Categórico (Booleano) | Indica si hay un reclamo cerrado. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
 | **Con mediación** | Categórico (Booleano) | Indica si el reclamo requirió la mediación de ML. | **String** (ej. `Sí`, `No`) o **vacío**. | Mapear a **Booleano** (`True`/`False`) o **Binario** (`1`/`0`). |
+
+</details>
 
 # Diccionario de Variables de Ventas de París
 

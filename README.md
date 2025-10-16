@@ -14,13 +14,6 @@
 
 # Diccionario de Variables
 
-- [Falabella](#diccionario-de-variables-de-falabella)
-- [Mercado Libre](#diccionario-de-variables-de-ventas-de-mercado-libre)
-- [París](#diccionario-de-variables-de-ventas-de-parís)
-- [Walmart](#diccionario-de-variables-de-ventas-de-walmart)
-- [Hites](#diccionario-de-variables-de-ventas-de-hites)
-- [Shopify](#diccionario-de-variables-de-ventas-de-shopify)
-
 ## Falabella
 <details>
 <summary><strong>Diccionario de Variables de Falabella</strong></summary>

@@ -388,8 +388,7 @@
 ### Mercado Público Bones
 
 <details>
-<summary>Diccionario de Variables de Mercado Público (Bones)</summary>
-## 📘 Diccionario de Variables – Mercado Público Bones
+<summary><strong>Diccionario de Variables de Mercado Público (Bones)</strong></summary>
 
 | **Atributo** | **Tipo Esperado** | **Descripción** | **Preprocesamiento sugerido** |
 |--------------|--------------------|------------------|-------------------------------|

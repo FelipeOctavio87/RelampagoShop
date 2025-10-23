@@ -383,6 +383,7 @@
 | **Next Payment Due At** | Fecha/Timestamp | Fecha de próximo pago pendiente. | String de Fecha/Hora con zona horaria o **vacío**. | Conversión a tipo **`datetime`**. |
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
 
+</details>
 ## Mercado Público Bones
 
 <details>

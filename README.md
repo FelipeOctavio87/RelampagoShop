@@ -400,14 +400,29 @@
 | **`Fulfilled at`** | Fecha/Timestamp | Fecha de cumplimiento. | Convertir a `datetime`, eliminar zona horaria. |
 | **`Accepts Marketing`** | Booleano | Si acepta marketing. | Mapear `yes/no` a `True/False`. |
 | **`Currency`** | Categórico | Moneda de la transacción (ej. CLP). | Mantener como categórico. |
-| **`Subtotal`, `Shipping`, `Taxes`, `Total`, `Discount Amount`, `Refunded Amount`, `Outstanding Balance`, `Lineitem price`, `Lineitem compare at price`, `Lineitem discount`, `Tax 1 Value` a `Tax 5 Value`** | Numérico (float) | Valores monetarios. | Convertir a `float`, imputar nulos si vacío. |
+| **`Subtotal`** | Numérico (float) | Subtotal de productos antes de impuestos y descuentos. | Convertir a `float`, imputar nulos si vacío. |
+| **`Shipping`** | Numérico (float) | Costo de envío. | Convertir a `float`, imputar nulos si vacío. |
+| **`Taxes`** | Numérico (float) | Monto total de impuestos. | Convertir a `float`, imputar nulos si vacío. |
+| **`Total`** | Numérico (float) | Valor total final de la orden. | Convertir a `float`, imputar nulos si vacío. |
+| **`Discount Amount`** | Numérico (float) | Monto del descuento aplicado. | Convertir a `float`, imputar nulos si vacío. |
+| **`Refunded Amount`** | Numérico (float) | Monto total reembolsado. | Convertir a `float`, imputar nulos si vacío. |
+| **`Outstanding Balance`** | Numérico (float) | Saldo pendiente. | Convertir a `float`, imputar nulos si vacío. |
+| **`Lineitem price`** | Numérico (float) | Precio unitario del producto. | Convertir a `float`, imputar nulos si vacío. |
+| **`Lineitem compare at price`** | Numérico (float) | Precio de comparación (original). | Convertir a `float`, imputar nulos si vacío. |
+| **`Lineitem discount`** | Numérico (float) | Descuento aplicado a la línea. | Convertir a `float`, imputar nulos si vacío. |
+| **`Tax 1 Value`** | Numérico (float) | Valor del impuesto 1. | Convertir a `float`, imputar nulos si vacío. |
+| **`Tax 2 Value`** | Numérico (float) | Valor del impuesto 2. | Convertir a `float`, imputar nulos si vacío. |
+| **`Tax 3 Value`** | Numérico (float) | Valor del impuesto 3. | Convertir a `float`, imputar nulos si vacío. |
+| **`Tax 4 Value`** | Numérico (float) | Valor del impuesto 4. | Convertir a `float`, imputar nulos si vacío. |
+| **`Tax 5 Value`** | Numérico (float) | Valor del impuesto 5. | Convertir a `float`, imputar nulos si vacío. |
 | **`Discount Code`** | String/Mixto | Código de descuento. | Imputar `"No Discount"` si vacío. |
 | **`Shipping Method`** | Categórico | Método de envío. | Mantener como categórico. |
 | **`Created at`** | Fecha/Timestamp | Fecha de creación de la orden. | Convertir a `datetime`, eliminar zona horaria. |
 | **`Lineitem quantity`** | Numérico (int) | Cantidad de unidades por línea. | Convertir a `int`, imputar 1 si vacío. |
 | **`Lineitem name`** | String | Nombre del producto. | Limpieza de texto y normalización. |
 | **`Lineitem sku`** | String | SKU del producto. | Mantener como string. |
-| **`Lineitem requires shipping`, `Lineitem taxable`** | Booleano | Indicadores de envío/impuesto. | Mapear `true/false` a `True/False`. |
+| **`Lineitem requires shipping`** | Booleano | ¿Requiere envío? | Mapear `true/false` a `True/False`. |
+| **`Lineitem taxable`** | Booleano | ¿Está sujeto a impuestos? | Mapear `true/false` a `True/False`. |
 | **`Lineitem fulfillment status`** | Categórico | Estado de cumplimiento por línea. | Mantener como categórico. |
 | **`Billing Name`, `Shipping Name`** | String | Nombre completo de facturación/envío. | Normalizar texto. |
 | **`Billing Address1`, `Shipping Address1`** | String | Dirección principal. | Normalizar texto. |
@@ -432,7 +447,6 @@
 
 </details>
 
-</details>
 🧰 Tecnologías utilizadas
 
 ![Static Badge](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)

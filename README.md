@@ -384,7 +384,8 @@
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
 
 </details>
-## Mercado Público Bones
+
+### Mercado Público Bones
 
 <details>
 <summary>Diccionario de Variables de Mercado Público (Bones)</summary>

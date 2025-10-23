@@ -383,6 +383,53 @@
 | **Next Payment Due At** | Fecha/Timestamp | Fecha de próximo pago pendiente. | String de Fecha/Hora con zona horaria o **vacío**. | Conversión a tipo **`datetime`**. |
 | **Payment References** | String/Mixto | Referencias de pago adicionales. | Alfanumérico o **vacío**. | **Mantenimiento como string.** |
 
+## 📘 Diccionario de Variables – Mercado Público Bones
+
+<details>
+<summary>Diccionario de Variables de Mercado Público (Bones)</summary>
+
+| Atributo | Tipo Esperado | Descripción | Preprocesamiento sugerido |
+|----------|----------------|-------------|----------------------------|
+| `Name` | String/Numérico (ID) | Número de identificación de la orden (ej. #8129). | Quitar `#`, convertir a string numérico. |
+| `Email` | String | Correo electrónico del cliente. | Estandarizar a minúsculas. |
+| `Financial Status` | Categórico | Estado financiero (ej. paid, pending). | Mantener como categórico. |
+| `Paid at` | Fecha/Timestamp | Fecha de pago (puede estar vacía si no se ha pagado). | Convertir a `datetime`, imputar `NaT` si vacío. |
+| `Fulfillment Status` | Categórico | Estado de cumplimiento. | Mantener como categórico. |
+| `Fulfilled at` | Fecha/Timestamp | Fecha de cumplimiento. | Convertir a `datetime`, eliminar zona horaria. |
+| `Accepts Marketing` | Booleano | Si acepta marketing. | Mapear `yes/no` a `True/False`. |
+| `Currency` | Categórico | Moneda de la transacción (ej. CLP). | Mantener como categórico. |
+| `Subtotal`, `Shipping`, `Taxes`, `Total`, `Discount Amount`, `Refunded Amount`, `Outstanding Balance`, `Lineitem price`, `Lineitem compare at price`, `Lineitem discount`, `Tax 1 Value` a `Tax 5 Value` | Numérico (float) | Valores monetarios. | Convertir a `float`, imputar nulos si vacío. |
+| `Discount Code` | String/Mixto | Código de descuento. | Imputar `"No Discount"` si vacío. |
+| `Shipping Method` | Categórico | Método de envío. | Mantener como categórico. |
+| `Created at` | Fecha/Timestamp | Fecha de creación de la orden. | Convertir a `datetime`, eliminar zona horaria. |
+| `Lineitem quantity` | Numérico (int) | Cantidad de unidades por línea. | Convertir a `int`, imputar 1 si vacío. |
+| `Lineitem name` | String | Nombre del producto. | Limpieza de texto y normalización. |
+| `Lineitem sku` | String | SKU del producto. | Mantener como string. |
+| `Lineitem requires shipping`, `Lineitem taxable` | Booleano | Indicadores de envío/impuesto. | Mapear `true/false` a `True/False`. |
+| `Lineitem fulfillment status` | Categórico | Estado de cumplimiento por línea. | Mantener como categórico. |
+| `Billing Name`, `Shipping Name` | String | Nombre completo de facturación/envío. | Normalizar texto. |
+| `Billing Address1`, `Shipping Address1` | String | Dirección principal. | Normalizar texto. |
+| `Billing Address2`, `Shipping Address2` | String | Dirección adicional. | Detectar y tratar nulos. |
+| `Billing Company`, `Shipping Company` | String | Empresa asociada (si aplica). | Detectar y tratar nulos. |
+| `Billing City`, `Shipping City` | String | Ciudad. | Normalizar mayúsculas/minúsculas. |
+| `Billing Province Name`, `Shipping Province Name` | String | Nombre de la región. | Normalizar texto. |
+| `Billing Province`, `Shipping Province` | Categórico | Código de región (ej. AP). | Mantener como categórico. |
+| `Billing Country`, `Shipping Country` | Categórico | Código de país (ej. CL). | Mantener como categórico. |
+| `Billing Phone`, `Shipping Phone`, `Phone` | String | Teléfonos. | Eliminar símbolos, mantener como numérico limpio. |
+| `Notes`, `Note Attributes` | String | Texto libre del pedido. | Limpieza de texto, imputar nulos. |
+| `Cancelled at` | Fecha/Timestamp | Fecha de cancelación (si aplica). | Convertir a `datetime`, imputar `NaT` si vacío. |
+| `Payment Method` | Categórico | Método de pago. | Mantener como categórico. |
+| `Payment Reference`, `Payment References` | String | Referencias de pago. | Mantener como string. |
+| `Payment ID` | String/Numérico | ID único del pago. | Mantener como string. |
+| `Payment Terms Name` | Categórico | Términos de pago. | Mantener como categórico. |
+| `Next Payment Due At` | Fecha/Timestamp | Fecha de próximo pago. | Convertir a `datetime`, imputar `NaT` si vacío. |
+| `Vendor`, `Employee`, `Location`, `Device ID` | String | Datos internos de venta. | Detectar nulos, mantener como string. |
+| `Tags`, `Risk Level`, `Source` | Categórico | Etiquetas, nivel de riesgo, canal de origen. | Mantener como categórico. |
+| `Tax 1 Name` a `Tax 5 Name` | Categórico | Nombre de impuestos. | Mantener como categórico. |
+| `Receipt Number`, `Duties` | String/Mixto | Número de recibo, aranceles. | Mantener como string, detectar nulos. |
+
+</details>
+
 </details>
 🧰 Tecnologías utilizadas
 
